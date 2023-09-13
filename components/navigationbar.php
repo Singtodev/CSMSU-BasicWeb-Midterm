@@ -17,7 +17,7 @@
 
 
         function build(){
-            echo '<div class="w-full lg:sticky top-0 bg-white py-4 pl-2 lg:pl-6 flex justify-between ">';
+            echo '<div class="w-full lg:relative top-0 bg-white py-4 pl-2 lg:pl-6 flex justify-between z-40">';
             echo    '<div class="group_icon  flex flex-row items-center gap-x-1">';
                         $this->logo();
             echo    '</div>';
@@ -49,7 +49,11 @@
         function explainMenu(){
             echo  '<div class="absolute top-20 z-20 lg:top-[73px] lg:-bottom-2 left-0 w-full transition-all duration-300 rounded-b-lg bg-black lg:h-auto">';
             echo   '<div class="relative flex flex-col gap-y-4 w-full bg-white h-auto shadow-md p-4">';
-                    $this->explainMenuLink("หน้าหลัก", './home.php');
+                    if($this->user['role'] == 'admin'){
+                        $this->explainMenuLink("หน้าหลัก", './admin.php');
+                    }else{
+                        $this->explainMenuLink("หน้าหลัก", './home.php');
+                    }
                     $this->explainMenuLink("ข้อมูลส่วนตัว", './profile.php');
                     $this->explainMenuLink("รายการสั่งซื้อ", './order.php');
                     $this->explainMenuLink("ออกจากระบบ", './logout.php');
@@ -66,8 +70,8 @@
             echo  '<div class="personal_account flex flex-row items-center gap-x-4">';
             echo    '<div class="w-10 h-10 bg-gray-300 rounded-full object-cover bg-center bg-cover bg-no-repeat" style="background-image: url('.$this->user['avatar'].');"></div>';
             echo    '<div class="group-text hidden lg:flex flex-col">';
-            echo        '<div class="font-bold leading-5">อาจารย์ M</div>';
-            echo        '<div class="font-bold leading-5">เจ้าของร้าน </div>';
+            echo        '<div class="font-bold leading-5">'.$this->user['username'].'</div>';
+            echo        '<div class="font-bold leading-5">'.$this->user['role_name'].'</div>';
             echo    '</div>';
             echo  '</div>';
         }

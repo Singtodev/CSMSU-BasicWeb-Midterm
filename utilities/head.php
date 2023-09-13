@@ -1,4 +1,5 @@
 <?php
+
     echo '<script src="https://cdn.tailwindcss.com"></script>';
     echo '<link rel="stylesheet" href="./styles/main.css">';
     echo '<title>Midterm66</title>';
